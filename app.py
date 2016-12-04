@@ -40,7 +40,7 @@ def database_to_json():
         json.dump(jsonobject, outfile, indent=4)
 
 
-def updateevent(eventid, eventtitle, eventcategory):
+def updateevent(eventid, eventtitle, eventcategory, oldstart):
     conn = sqlite3.connect('calendar.db')
     c = conn.cursor()
     # command = 'UPDATE calendarevents SET title = '+'"Rojer"'+' WHERE id = '+str(eventid)+';'
@@ -48,6 +48,9 @@ def updateevent(eventid, eventtitle, eventcategory):
     c.execute(command)
     conn.commit()
     command = "UPDATE calendarevents SET category = '"+eventcategory+"' WHERE id = "+str(eventid)+";"
+    c.execute(command)
+    conn.commit()
+    command = "UPDATE calendarevents SET start = '"+oldstart+"' WHERE id = "+str(eventid)+";"
     c.execute(command)
     conn.commit()
 
@@ -122,7 +125,7 @@ def events():
         oldtitle = request.json['oldtitle']
         eventid = request.json['eventid']
         print(newtitle, newcategory, oldstart, oldtitle)
-        updateevent(eventid, newtitle, newcategory)
+        updateevent(eventid, newtitle, newcategory, oldstart)
 
         # Send over the events and the predictions results over to the main page to plot colors and icons.
         return render_template('index.html')

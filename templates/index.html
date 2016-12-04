@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Kevin's CLoud Calendar</title>
 
 <!---------------------------------   AJAX: AND CALENDAR FILES ------------------------------------------>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -199,7 +199,12 @@
             text-align: left;
             font-size: 1.5em;
         }
-
+        #oldtime{
+            color: red;
+            font-family: sans-serif;
+            text-align: left;
+            font-size: 1.5em;
+        }
         /****************************      NEW FORM STYLING        ***************************/
 
         #formcontainer2{
@@ -215,7 +220,7 @@
             font-family: sans-serif;
             font-size: medium;
         }
-        #newesttitle, #newestcategory, #newformselecter, #newformselecter2{
+        #newesttitle, #newestcategory, #newformselecter, #newformselecter2, #timeselector, #timeselector2{
             width: 100%;
             padding: 12px 20px;
             margin: 8px 0;
@@ -303,6 +308,8 @@
           <ul id="left-nav">
             <li><img style="position:relative;top:17px;float:left;"src="{{ url_for('static', filename='brand.png') }}" alt="Harmony"/><a href="welcome">Cloud Calendar</a></li>
             <li><a href="/">Home</a></li>
+            <li><a href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://still-springs-66558.herokuapp.com." title="Share by Email">SHARE</a></li>
+
           </ul>
           <ul id="right-nav">
             <li><img style="position:relative;top:17px;float:left;" src="{{ url_for('static', filename='login.png') }}" alt="login"/><a href="#">Login</a></li>
@@ -329,15 +336,17 @@
     <!-- The Modal -->
     <div id="myModal" class="modal">
       <span class="close">×</span>
-            <h2 id="formtext1">Here is your event</h2>
             <div id="formcontainer1">
             <form id="changeform" method=post action="/events">
-                <p>Old Event is:</p>
+                <p id="shower1">Event is:</p>
                 <p id="oldevent"></p>
-                <p>Old Category Is:</p>
+                <p id="shower2">Category Is:</p>
                 <p id="oldcategory"></p>
+                <p id="shower3">Time Is At:</p>
+                <p id="oldtime"></p>
                 <!--Grabs the variable, form class, say hello attribute, renders with Jinja -->
-                Event Name: <input id="newtitle" type="text" name="fname"><br>
+                <label id="hider">New Event Name:</label>
+                <input id="newtitle" type="text" name="fname"><br>
                 <select id="newformselecter">
                   <option value="Java">Java</option>
                   <option value="Algorithms">Algorithms</option>
@@ -345,6 +354,19 @@
                   <option value="CloudComputing">CloudComputing</option>
                   <option value="DataScience">DataScience</option>
                   <option value="DataVisualisation">DataVisualisation</option>
+                </select>
+                <select id="timeselector2">
+                  <option value="08:00:00">08:00:00</option>
+                  <option value="09:00:00">09:00:00</option>
+                  <option value="10:00:00">10:00:00</option>
+                  <option value="11:00:00">11:00:00</option>
+                  <option value="12:00:00">12:00:00</option>
+                  <option value="13:00:00">13:00:00</option>
+                  <option value="14:00:00">14:00:00</option>
+                  <option value="15:00:00">15:00:00</option>
+                  <option value="16:00:00">16:00:00</option>
+                  <option value="17:00:00">17:00:00</option>
+                  <option value="18:00:00">18:00:00</option>
                 </select>
                 <button id="formbutton" type="button">UPDATE EVENT</button>
                 <button id="deletebutton" type="button">DELETE EVENT</button>
@@ -355,7 +377,6 @@
     <!-- The Modal -->
     <div id="myModal2" class="modal">
         <span class="close">×</span>
-        <h2 id="formtext3">Here is your event</h2>
         <div id="formcontainer2">
             <form id="newform" method=post action="/events">
                 Event name: <input id="newesttitle" type="text" name="fname"><br>
@@ -366,6 +387,19 @@
                   <option value="CloudComputing">CloudComputing</option>
                   <option value="DataScience">DataScience</option>
                   <option value="DataVisualisation">DataVisualisation</option>
+                </select>
+                <select id="timeselector">
+                  <option value="08:00:00">08:00:00</option>
+                  <option value="09:00:00">09:00:00</option>
+                  <option value="10:00:00">10:00:00</option>
+                  <option value="11:00:00">11:00:00</option>
+                  <option value="12:00:00">12:00:00</option>
+                  <option value="13:00:00">13:00:00</option>
+                  <option value="14:00:00">14:00:00</option>
+                  <option value="15:00:00">15:00:00</option>
+                  <option value="16:00:00">16:00:00</option>
+                  <option value="17:00:00">17:00:00</option>
+                  <option value="18:00:00">18:00:00</option>
                 </select>
                 <button id="formbutton2" type="button">CREATE EVENT</button>
             </form>
@@ -434,9 +468,12 @@
 
 ////////////////////////////////     FORM FUNCTIONS RECEIVE EVENT DATA SEND TOTAL AJAX      ////////////////////////////
         function sendForm(calevent) {
-            showChange();
+            console.log(calevent.start.format())
+            showChange(0);
             $('#oldevent').html(String(calevent.title));
             $('#oldcategory').html(mapper[String(calevent.color)]);
+            $('#oldtime').html(calevent.start.format());
+
 
             $('#deletebutton').click(function(){
                 var eventid = calevent.id;
@@ -465,9 +502,11 @@
                 var oldtitle = String(calevent.title);
                 var eventid = calevent.id;
                 var start = String(calevent.start.format());
-                var oldend = String(calevent.start.end);
-                var object = calevent;
-//                var end = calevent.end.format();
+                var firstHour= $('#timeselector2').val()
+                var hypotheticalHour = 'T'+firstHour;
+                var fulldatey = start+hypotheticalHour
+
+
 
                 $.ajax({
                     type: "POST",
@@ -476,7 +515,7 @@
                     data: JSON.stringify({
                         newtitle: newtitle,
                         newcategory: newcategory,
-                        oldstart: start,
+                        oldstart: fulldatey,
                         oldtitle: oldtitle,
                         eventid: eventid
                     }),
@@ -502,8 +541,12 @@
 
                 var eventtitle = $('#newesttitle').val();
                 var eventcategory = $('#newformselecter2').val();
+                var thedate = String(datey.format())
+                var firstHour= $('#timeselector').val()
+                var hypotheticalHour = 'T'+firstHour;
+                var fulldatey = thedate+hypotheticalHour
 
-                if (timeSlotsBooking(datey)){
+                if (timeSlotsBooking(fulldatey)){
                     window.alert("TIMESLOTS BOOKING WARNING: \nThis is already booked")
 
                 } else{
@@ -518,7 +561,7 @@
                         data: JSON.stringify({
                             title: eventtitle,
                             categor: eventcategory,
-                            start: String(datey.format()),
+                            start: fulldatey,
                             eventid: parseInt(uniqueid)
                         }),
                         success: function (data) {
@@ -578,7 +621,7 @@
                 $('#oldevent').html(queryevent);
                 $('#oldcategory').html(mapper[String(queryeventcolor)]);
             }
-            showChange ()
+            showChange(1)
         });
 
 
@@ -588,7 +631,7 @@
             var queryevent = param;
             events.forEach(function(event){
                 var eventDate = new Date(event.start);
-                var currDate = new Date(String(param.format()));
+                var currDate = new Date(param);
                 console.log(+eventDate, +currDate)
                 if (+eventDate == +currDate){
                     boolFlag = true
@@ -626,7 +669,35 @@
         var modal = document.getElementById('myModal');
         // Get the image and insert it inside the modal - use its "alt" text as a caption
 
-        function showChange () {
+        function showChange (flag) {
+            if (flag == 1){
+                console.log('Make the change');
+                $('#formbutton').hide()
+                $('#deletebutton').hide()
+                $('#newformselecter').hide()
+                $('#newtitle').hide()
+                $('#hider').hide()
+                $('#timeselector2').hide()
+                $('#shower1').show()
+                $('#shower2').show()
+                $('#shower3').show()
+                $('#oldevent').show()
+                $('#oldcategory').show()
+                $('#oldtime').show()
+            } else if (flag == 0){
+                $('#formbutton').show()
+                $('#deletebutton').show()
+                $('#newformselecter').show()
+                $('#newtitle').show()
+                $('#hider').show()
+                $('#shower1').hide()
+                $('#shower2').hide()
+                $('#shower3').hide()
+                $('#oldevent').hide()
+                $('#oldcategory').hide()
+                $('#oldtime').hide()
+            }
+
             modal.style.display = "block";
             // Get the <span> element that closes the modal
             var span = document.getElementsByClassName("close")[0];
