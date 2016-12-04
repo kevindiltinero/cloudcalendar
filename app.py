@@ -83,6 +83,8 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    conn = sqlite3.connect('calendar.db')
+    c = conn.cursor()
     return "hello"
 
 
