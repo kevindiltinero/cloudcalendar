@@ -537,11 +537,11 @@
 
 
         function sendForm3(event, delta) {
+                console.log(event);
                 var eventid = event.id;
-                var eventstart = event.start;
 //                var oldend = String(event.start.end);
-                var object = event;
-
+                var eventstart = String(event.start.format())
+                console.log(eventstart)
 
                 $.ajax({
                     type: "POST",
@@ -557,9 +557,9 @@
                     },
                     dataType: "json"
                 });
-            setTimeout( function(){
-                    location.reload();
-                }, 500 );
+                setTimeout( function(){
+                        location.reload();
+                    }, 500 );
         }
 
 
@@ -651,7 +651,7 @@
         }
 
 
-    });
+    })
 
 
     </script>

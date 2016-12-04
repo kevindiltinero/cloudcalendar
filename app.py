@@ -59,7 +59,9 @@ def updatedate(eventid, eventstart):
     command = "UPDATE calendarevents SET start = '"+eventstart+"' WHERE id = "+str(eventid)+";"
     c.execute(command)
     conn.commit()
-
+    command = "UPDATE calendarevents SET end = '"+eventstart+"' WHERE id = "+str(eventid)+";"
+    c.execute(command)
+    conn.commit()
 
 def grab_single_event(eventtitle):
     conn = sqlite3.connect('calendar.db')
