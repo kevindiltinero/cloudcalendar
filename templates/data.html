@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+/********************************** THIS PAGE IS JUST FOR TESTING CODE.  *********************************/
+
+
+        body, html {
+                margin:0;
+                padding:0;
+        }
+
+
+        nav {
+                background-color:#337ab7;
+                border-bottom-color:transparent;
+                border-bottom-left-radius:4px;
+                border-bottom-right-radius:4px;
+                z-index:9999;
+                position:relative;
+                padding:8px;
+                min-height:80px;
+                margin-bottom:5px;
+                line-height:20px;
+                font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+                display:block;
+        }
+        nav ul li a {
+                color:white;
+                text-decoration:none;
+                padding:20px 30px;
+                display:block;
+        }
+        nav ul li a:hover {
+                color:orange;
+                font-weight:bold;
+                border:1px solid orange;
+                background-color:#0066cc;
+        }
+        #left-nav li {
+                border-left:1px solid lightblue;
+        }
+        #left-nav li:nth-child(1) {
+                border-left:none;
+        }
+        #right-nav li {
+                border-left:none;
+        }
+        #right-nav li:nth-child(1) {
+                border-left:1px solid lightblue;
+        }
+        #left-nav {
+                list-style-type:none;
+        }
+        #left-nav li {
+                display:block;
+                float:left;
+        }
+        #right-nav {
+                list-style-type:none;
+        }
+        #right-nav li {
+                display:block;
+                float:right;
+        }
+
+
+        footer {
+                background-color:#f8f8f8;
+                height:128px;
+                padding-top:40px;
+                padding-left:20px;
+                padding-right:10px;
+                border:1px solid rgb(231,231,231);
+                border-top:2px solid rgb(204,204,204);
+        }
+        footer ul {
+                list-style-type:none;
+        }
+        footer ul li {
+                float:right;
+        }
+        footer ul li a {
+                color:#777;
+                font-weight:bold;
+                text-decoration:none;
+                padding:15px;
+                display:block;
+        }
+        footer ul li {
+                border-right:1px solid lightgray;
+        }
+        footer ul li:nth-child(1) {
+                border:none;
+        }
+        footer ul li a:hover {
+                color:#222;
+        }
+
+
+/********************************** POP UP WINDOW STYLING *********************************/
+        #myImg {
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+        }
+        /* Modal Content (image) */
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+        /* Caption of Modal Image */
+        #caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 10px 0;
+            height: 150px;
+            font-family: sans-serif;
+            font-size: 14pt;
+        }
+        /* Add Animation */
+        .modal-content, #caption {
+            -webkit-animation-name: zoom;
+            -webkit-animation-duration: 0.6s;
+            animation-name: zoom;
+            animation-duration: 0.6s;
+        }
+        @-webkit-keyframes zoom {
+            from {-webkit-transform:scale(0)}
+            to {-webkit-transform:scale(1)}
+        }
+        @keyframes zoom {
+            from {transform:scale(0)}
+            to {transform:scale(1)}
+        }
+        /* The Close Button */
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        /* 100% Image Width on Smaller Screens */
+        @media only screen and (max-width: 700px){
+            .modal-content {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+
+<!--NAVIGATION BAR -->
+<!-- The links are really linked to flask routes which render the webpage-->
+<nav>
+    <div>
+      <ul id="left-nav">
+        <li><img style="position:relative;top:17px;float:left;"src="{{ url_for('static', filename='brand.png') }}" alt="Harmony"/><a href="welcome">Team Harmony</a></li>
+        <li><a href="home">Home</a></li>
+        <li><a href="events">Events</a></li>
+        <li><a href="data">Data</a></li>
+        <li><a href="index">Index</a></li>
+      </ul>
+      <ul id="right-nav">
+        <li><img style="position:relative;top:17px;float:left;" src="{{ url_for('static', filename='login.png') }}" alt="login"/><a href="#">Login</a></li>
+        <li><img style="position:relative;top:17px;float:left;" src="{{ url_for('static', filename='signup.png') }}" alt="signup"/><a href="#">Sign Up</a></li>
+      </ul>
+    </div>
+</nav>
+
+
+
+
+<!-- THIS IS JUST A TEST FOR OUR POPUP WINDOWS -->
+<img id="myImg" src="{{ url_for('static', filename='career.png') }}" alt="Trolltunga, Norway" height="70">
+<div id="myModal" class="modal">
+  <span class="close">×</span>
+  <img class="modal-content" id="img01">
+  <div id="caption"></div>
+</div>
+
+
+<!--NICE FOOTER -->
+<footer>
+      <a href="#"><img style="float:left;" alt="University College Dublin" src="csiLogo.png"></a>
+      <ul >
+        <li><a href="#">Michael McNulty</a></li>
+        <li><a href="#">Kevin Fitzpatrick</a></li>
+        <li><a href="#">Iwona Sarna</a></li>
+        <li><a href="#">Andrew Sweeney</a></li>
+      </ul>
+</footer>
+
+
+
+
+<script>
+
+/* ************************************************** THIS IS ALL JUST ME TESTING POPUP  */
+// Get the modal
+var modal = document.getElementById('myModal');
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById('myImg');
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+img.onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = '{{ url_for('static', filename='meet.jpg') }}';
+    modalImg.alt = this.alt;
+    captionText.innerHTML = 'Allow miles wound place the leave had. To sitting subject no improve studied limited. ' +
+            'Ye indulgence unreserved connection alteration appearance my an astonished. Up as seen sent make he they ' +
+            'of. Her raising and himself pasture believe females. Fancy she stuff after aware merit small his. Charmed ' +
+            'esteems luckily age out.';
+}
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
