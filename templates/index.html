@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-<!---------------------------------   AJAX: This is what is used for jquery ------------------------------------------>
+
+<!---------------------------------   AJAX: AND CALENDAR FILES ------------------------------------------>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <link rel='stylesheet' href="{{ url_for('static', filename='fullcalendar.css') }}"/>
     <script src="{{ url_for('static', filename='lib/jquery.min.js') }}"></script>
@@ -15,6 +16,8 @@
         body {
             background-color: white;
         }
+
+
 /********************************** MICHAEL'S NAVIGATION BAR STYLING *********************************/
         nav {
                 background-color:#337ab7;
@@ -69,67 +72,7 @@
                 float:right;
         }
 
-/********************************** MICHAEL'S FORM STYLING *********************************/
-        form {
-            display : inline-block;
-        }
-        dl {
-            float: left;
-            margin:24px;
-            padding:0;
-            display: block;
-        }
-        #formcontainer{
-            width:300px;
-            height:200px;
-            margin-left: 240px;
-            margin-top: 30px;
-            border : solid black 2px;
-            background-color: white;
-        }
-/********************************** COMPUTER SCIENCE MAP WITH SLICES STYLING *********************************/
-        #map {
-            width : 900px;
-            height : 700px;
-            margin-left: 240px;
-            margin-top: 30px;
-            border : solid black 2px;
-            position : relative;
-            display : none;
-            font-size: 0;
-            background-image: url({{ url_for('static', filename='fullmap.jpg') }});
-        }
 
-
-/********************************** ICONS WITHIN THE SLICES STYLING *********************************/
-        .inner-element{
-            position: absolute;
-            width: 134px;
-            height: 104px;
-            background-image: url({{ url_for('static', filename='career.png') }});
-            }
-        .frame {
-            height: 25px;      /* equals max image height */
-            width: 160px;
-            border: 1px solid red;
-            white-space: nowrap;
-            text-align: center; margin: 1em 0;
-        }
-        .helper {
-            display: inline-block;
-            height: 100%;
-            vertical-align: middle;
-            background-color: red;
-        }
-        img {
-            background-color: transparent;
-            vertical-align: middle;
-            max-height: 70px;
-            max-width: 160px;
-        }
-        .present{
-            visibility : hidden;
-        }
 /********************************** THE ICON POP-UP WINDOW STYLING *********************************/
         /* The Modal (background) */
         .modal {
@@ -144,36 +87,6 @@
             overflow: auto; /* Enable scroll if needed */
             background-color: rgb(0,0,0); /* Fallback color */
             background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-        }
-        /* Modal Content (image) */
-        .modal-content {
-        {#    width: 600px;#}
-            margin: auto;
-            display: block;
-            max-height: 700px;
-            max-width: 700px;
-        {#    width: 80%;#}
-        {#    max-width: 700px;#}
-        }
-        /* Caption of Modal Image */
-        #caption {
-            margin: auto;
-            display: block;
-            width: 80%;
-            max-width: 700px;
-            text-align: center;
-            color: #ccc;
-            padding: 10px 0;
-            height: 150px;
-            font-family: sans-serif;
-            font-size: 14pt;
-        }
-        /* Add Animation */
-        .modal-content, #caption {
-            -webkit-animation-name: zoom;
-            -webkit-animation-duration: 0.6s;
-            animation-name: zoom;
-            animation-duration: 0.6s;
         }
         @-webkit-keyframes zoom {
             from {-webkit-transform:scale(0)}
@@ -192,6 +105,7 @@
             font-size: 40px;
             font-weight: bold;
             transition: 0.3s;
+            margin-top: 150px;;
         }
         .close:hover,
         .close:focus {
@@ -205,6 +119,179 @@
                 width: 100%;
             }
         }
+
+        /****************************      CHANGE FORM STYLING        ***************************/
+        #formcontainer1{
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 50%;
+            margin-top: -100px;
+            margin-left: -350px;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+            font-family: sans-serif;
+            font-size: medium;
+        }
+        #newtitle, #newcategory{
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid black;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: sans-serif;
+            font-size: medium;
+        }
+        #changeform{
+            width: 100%;
+        }
+        #formbutton {
+            width: 100%;
+            background-color: #337ab7;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: solid 1px black;
+            border-radius: 4px;
+            cursor: pointer;
+            color:white;
+            font-family: sans-serif;
+            font-size: medium;
+        }
+        #deletebutton {
+            width: 100%;
+            background-color: #337ab7;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: solid 1px black;
+            border-radius: 4px;
+            cursor: pointer;
+            color:white;
+            font-family: sans-serif;
+            font-size: medium;
+        }
+
+
+        #formtext1{
+            color: white;
+            font-family: sans-serif;
+            text-align: center;
+            margin-top: 100px;
+            font-size: 3em;
+        }
+        #formtext2{
+            color: white;
+            font-family: sans-serif;
+            text-align: center;
+            font-size: 2em;
+        }
+        #oldevent{
+            color: red;
+            font-family: sans-serif;
+            text-align: left;
+            font-size: 1.5em;
+        }
+        #oldcategory{
+            color: red;
+            font-family: sans-serif;
+            text-align: left;
+            font-size: 1.5em;
+        }
+
+        /****************************      NEW FORM STYLING        ***************************/
+
+        #formcontainer2{
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 50%;
+            margin-top: -100px;
+            margin-left: -350px;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+            font-family: sans-serif;
+            font-size: medium;
+        }
+        #newesttitle, #newestcategory, #newformselecter, #newformselecter2{
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid black;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: sans-serif;
+            font-size: medium;
+        }
+        #newform{
+            width: 100%;
+        }
+        #formbutton2 {
+            width: 100%;
+            background-color: #337ab7;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: solid 1px black;
+            border-radius: 4px;
+            cursor: pointer;
+            color:white;
+            font-family: sans-serif;
+            font-size: medium;
+        }
+
+
+
+
+        /****************************    SEARCH BAR STYLING      ******************************/
+        #querycontainer{
+            top: 50%;
+            left: 50%;
+            width: 40%;
+            height: 100px;
+            margin-top: 0px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+        #querybutton {
+            text-decoration:none;
+            display:block;
+            width: 100%;
+            background-color: #337ab7;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: solid 1px black;
+            border-radius: 4px;
+            cursor: pointer;
+            color:white;
+            font-family: sans-serif;
+            font-size: medium;
+        }
+        #query {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid black;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: sans-serif;
+            font-size: medium;
+
+        }
+        label{
+            font-family: sans-serif;
+            font-size: medium;
+        }
+        #response{
+            color: white;
+        }
+
     </style>
 </head>
 
@@ -215,10 +302,7 @@
         <div>
           <ul id="left-nav">
             <li><img style="position:relative;top:17px;float:left;"src="{{ url_for('static', filename='brand.png') }}" alt="Harmony"/><a href="welcome">Team Harmony</a></li>
-            <li><a href="home">Home</a></li>
-            <li><a href="events">Events</a></li>
-            <li><a href="data">Data</a></li>
-            <li><a href="index">Index</a></li>
+            <li><a href="/">Home</a></li>
           </ul>
           <ul id="right-nav">
             <li><img style="position:relative;top:17px;float:left;" src="{{ url_for('static', filename='login.png') }}" alt="login"/><a href="#">Login</a></li>
@@ -228,32 +312,10 @@
     </nav>
 
 
-<!-------------------------     FORMS TO CHANGE DAY/HOUR OF OCCUPANCY QUERY     ---------------------------------->
-    {% from "_formhelpers.html" import render_field %}
-    <!--  Standard div to contain our form so we can change the box size color whatevz  -->
-    <div id="formcontainer">
-        <form method=post action="/events">
-            <p>Old Event is:</p>
-            <p id="oldevent"></p>
-            <p>Old Category Is:</p>
-            <p id="oldcategory"></p>
-            <!--Grabs the variable, form class, say hello attribute, renders with Jinja -->
-            Event Name: <input id="newtitle" type="text" name="fname"><br>
-            Last name: <input id="newcategory" type="text" name="lname"><br>
-            <input style="margin-top:30px" type=submit value='Say Hello' name='submit_btn'>
-            <button id="formbutton" type="button">Click Me!</button>
-        </form>
-    </div>
-
-    <div id="formcontainer">
-        First name: <input id="frm2" type="text" name="fname"><br>
-        Last name: <input id="frm2" type="text" name="lname"><br>
-        <button id="formbutton2" type="button">Click Me!</button>
-    </div>
-
-    <div id="formcontainer">
-        Search Bar: <input id="query" type="text" name="query"><br>
-        <button id="querybutton" type="button">Click Me!</button>
+<!-----------------------------------     QUERY SERACH BAR     --------------------------------------------------->
+    <div id="querycontainer">
+        <input id="query" type="text" name="query"><br>
+        <button id="querybutton" type="button">Query an event!</button>
     </div>
 
 
@@ -262,33 +324,71 @@
     </div>
 
 
-
 <!-----------------------------------------     POP UP WINDOWS FOR EVENTS     ----------------------------------------->
-<div id="myModal" class="modal">
-  <span class="close">×</span>
-  <img class="modal-content" id="img01">
-  <div id="caption"></div>
-</div>
 
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <span class="close">×</span>
+            <h2 id="formtext1">Here is your event</h2>
+            <div id="formcontainer1">
+            <form id="changeform" method=post action="/events">
+                <p>Old Event is:</p>
+                <p id="oldevent"></p>
+                <p>Old Category Is:</p>
+                <p id="oldcategory"></p>
+                <!--Grabs the variable, form class, say hello attribute, renders with Jinja -->
+                Event Name: <input id="newtitle" type="text" name="fname"><br>
+                <select id="newformselecter">
+                  <option value="Java">Java</option>
+                  <option value="Algorithms">Algorithms</option>
+                  <option value="Programming">Programming</option>
+                  <option value="CloudComputing">CloudComputing</option>
+                  <option value="DataScience">DataScience</option>
+                  <option value="DataVisualisation">DataVisualisation</option>
+                </select>
+                <button id="formbutton" type="button">Update this event!</button>
+                <button id="deletebutton" type="button">Delete this event!</button>
+            </form>
+        </div>
+    </div>
 
+    <!-- The Modal -->
+    <div id="myModal2" class="modal">
+        <span class="close">×</span>
+        <h2 id="formtext3">Here is your event</h2>
+        <div id="formcontainer2">
+            <form id="newform" method=post action="/events">
+                Event name: <input id="newesttitle" type="text" name="fname"><br>
+                <select id="newformselecter2">
+                  <option value="Java">Java</option>
+                  <option value="Algorithms">Algorithms</option>
+                  <option value="Programming">Programming</option>
+                  <option value="CloudComputing">CloudComputing</option>
+                  <option value="DataScience">DataScience</option>
+                  <option value="DataVisualisation">DataVisualisation</option>
+                </select>
+                <button id="formbutton2" type="button">Click Me!</button>
+            </form>
+        </div>
+    </div>
 
-
-<!--------------------     ELEMENTS JUST THERE TO SEE IF WE ARE GETTING RESULTS BACK FROM FLASK     ------------------->
-    <h1 id="checking2">Bilbo</h1>
-    <h1 id="checking">Results</h1>
 
 
     <script>
-    var mapper = {red:'entertainment', green:'work'};
+
+
+    var mapper = {green:'Java', red:'Algorithms', blue:'Programming', orange:'DataVisualisation', yellow:'CloudComputing', brown:'DataScience'};
 
 ///////////////////////////////////////////          CALENDAR              /////////////////////////////////////////////
         $(document).ready(function() {
+            console.log(myjson);
 
             ////////  CHECK THAT I HAVE THE JSON DATA
-            console.log(myjson.glossary);
 
             ////////    INITIALIZE THE CALENDAR
             $('#calendar').fullCalendar({
+
+                theme: true,
 
 
                 //////////        THIS IS THE EVENTS MANUAL ARRAY OF OBJECTS FROM MY JSON OBJECT
@@ -296,35 +396,31 @@
 
                 dayClick: function (date, jsEvent, view) {
                     sendForm2(date);
-                    // change the day's background color just for fun
-                    $(this).css('background-color', 'red');
                 },
 
                 //////////////  EVENT CLICK  ++  FORM EVENT
                 eventClick: function(calEvent, jsEvent, view) {
                         sendForm(calEvent);
-                        // change the border color just for fun
-{#                        $(this).css('border-color', 'red');#}
-
                     },
 
                 //POSSIBLE TO SELECT THE BOXES
                 selectable: true,
                 selectHelper: true,
                 select: function( start, end, jsEvent, view){
-                        console.log(moment(start).format("MM/DD/YYYY"), moment(end).format("MM/DD/YYYY"))
+//                        console.log(moment(start).format("MM/DD/YYYY"), moment(end).format("MM/DD/YYYY"))
                 },
 
                 ////////////     DRAG AND DROP EVENTS
                 editable: true,
                 eventLimit: true,
                 eventDrop: function(event, delta, revertFunc, jsEvent, ui, view ) {
-                        console.log(delta)
+//                        console.log(event, delta)
+                        sendForm3(event, delta)
                 },
 
                 ////////////     EVENT RESIZE
                 eventResize: function( event, delta, revertFunc, jsEvent, ui, view ) {
-                    console.log(delta)
+//                    console.log(delta)
                 }
             })
         });
@@ -335,24 +431,41 @@
 
 ////////////////////////////////     FORM FUNCTIONS RECEIVE EVENT DATA SEND TOTAL AJAX      ////////////////////////////
         function sendForm(calevent) {
+            showChange();
             $('#oldevent').html(String(calevent.title));
             $('#oldcategory').html(mapper[String(calevent.color)]);
 
+            $('#deletebutton').click(function(){
+                var eventid = calevent.id;
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    url: "/remove",
+                    data: JSON.stringify({
+                        eventid: eventid
+                    }),
+                    success: function (data) {
+                        console.log(data.title);
+                        console.log(data.article);
+                    },
+                    dataType: "json"
+                });
+                setTimeout( function(){
+                    location.reload();
+                }, 1300 );
+            });
 
-            $('button').click(function () {
+
+            $('#formbutton').click(function () {
                 var newtitle = $('#newtitle').val();
-                var newcategory = $('#newcategory').val();
+                var newcategory = $('#newformselecter').val();
                 var oldtitle = String(calevent.title);
                 var eventid = calevent.id;
                 var start = String(calevent.start.format());
                 var oldend = String(calevent.start.end);
                 var object = calevent;
-{#                var end = calevent.end.format();#}
+//                var end = calevent.end.format();
 
-
-
-                console.log(newtitle, newcategory, start, oldtitle, object, eventid);
-{##}
                 $.ajax({
                     type: "POST",
                     contentType: "application/json; charset=utf-8",
@@ -370,48 +483,118 @@
                     },
                     dataType: "json"
                 });
+
+                setTimeout( function(){
+                    location.reload();
+                }, 1300 );
             });
         }
 
+
         function sendForm2(datey) {
+
+            showNew();
+
             $('#formbutton2').click(function () {
 
-                gety = $('#frm2').val();
-                console.log(gety, String(datey.format()));
-{##}
+                var eventtitle = $('#newesttitle').val();
+                var eventcategory = $('#newformselecter2').val();
+
+                if (timeSlotsBooking(datey)){
+                    window.alert("TIMESLOTS BOOKING WARNING: \nThis is already booked")
+
+                } else{
+                    //Generate Unique ID
+                    var object = new Date();
+                    var uniqueid = object.getTime();
+
+                    $.ajax({
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        url: "/",
+                        data: JSON.stringify({
+                            title: eventtitle,
+                            categor: eventcategory,
+                            start: String(datey.format()),
+                            eventid: parseInt(uniqueid)
+                        }),
+                        success: function (data) {
+                            alert("It worked");
+                        },
+                        dataType: "json"
+                    });
+                }
+
+                setTimeout( function(){
+                        location.reload();
+                    }, 1300 );
+
+                 });
+        }
+
+
+        function sendForm3(event, delta) {
+                var eventid = event.id;
+                var eventstart = event.start;
+//                var oldend = String(event.start.end);
+                var object = event;
+
+
                 $.ajax({
                     type: "POST",
                     contentType: "application/json; charset=utf-8",
-                    url: "/home",
-                    data: JSON.stringify({title: gety, start: String(datey.format())}),
+                    url: "/drag",
+                    data: JSON.stringify({
+                        eventid: eventid,
+                        eventstart: eventstart
+                    }),
                     success: function (data) {
-                        alert("It worked");
+                        console.log(data.title);
+                        console.log(data.article);
                     },
                     dataType: "json"
                 });
-                setTimeout( function(){
+            setTimeout( function(){
                     location.reload();
-                }, 1000 );
-
-            });
+                }, 1300 );
         }
 
+
         $('#querybutton').click(function () {
-            var queryeventid
-            var queryeventcolor
+            var queryeventid;
+            var queryeventcolor;
             var queryevent = $('#query').val();
-            var events = myjson.glossary
+            var events = myjson.glossary;
             events.forEach(function(event){
                 if (event.title == queryevent){
                     queryeventid = event.id;
                     queryeventcolor = event.color;
                 }
-            })
+            });
             if (queryeventid){
                 $('#oldevent').html(queryevent);
                 $('#oldcategory').html(mapper[String(queryeventcolor)]);
             }
+            showChange ()
         });
+
+
+        function timeSlotsBooking(param){
+            var boolFlag = false
+            var events = myjson.glossary;
+            var queryevent = param;
+            events.forEach(function(event){
+                var eventDate = new Date(event.start);
+                var currDate = new Date(String(param.format()));
+                console.log(+eventDate, +currDate)
+                if (+eventDate == +currDate){
+                    boolFlag = true
+                }
+            })
+            console.log(boolFlag);
+            return boolFlag
+        }
+
 
         function isOverlapping(event){
             var i;
@@ -430,80 +613,45 @@
             return false;
         }
 
-
+        ///////////////////////////////         GET THE JSON         ////////////////////////////////////////
         $.getJSON('{{ url_for('static', filename='random.json') }}', function(json){
             myjson = json;
 
         });
 
-////////////////////   GET ALL THE RESULTS FROM FLASK  events predictions, hour, day etc         ///////////////////////
-        var ajazdata = '{{ events }}';
-        document.getElementById('checking2').innerHTML = '{{ testing }}';
 
 
-
-//////////////////////////////////   FUNCTION TO PLOT THE ICONS BASED ON EVENTS TABLE         //////////////////////////
-        //Use Jinja to run through array from flask and make visible the icons based on events table
-        function iconsChange() {
-        //Use Jinja to to run through javascript block on each one.
-            {% if events != -1 %}
-            {% for item in events %}
-                var iconchange = "/static/"+'{{ item[4] }}';
-                document.getElementById('checking').innerHTML = iconchange;
-                document.getElementById('checking2').innerHTML = '{{ item[0] }}';
-                document.getElementById('{{ item[0] }}').src = iconchange;
-                document.getElementById('{{ item[0] }}').style.visibility = "visible";
-            {% endfor %}
-            {% endif %}
-        }
-        iconsChange();
-
-
-
-        ////////////////////////////////  JQUERY FUNCTION FADE ICONS IN AND FADE OUT         //////////////////////////
-                setInterval(function(){
-            $(".present").fadeOut(function() {
-                $(this).fadeIn().delay(500).fadeOut(function(){
-                    $(this).fadeIn().delay(500);
-                });
-             }
-            );
-        }, 400);
-        ///////////////////////////////         POP UP WINDOW FUNCTION         ////////////////////////////////////////
+        ///////////////////////////////         POP UP WINDOW FUNCTIONS         ////////////////////////////////////////
+        // Get the modal
         // Get the modal
         var modal = document.getElementById('myModal');
         // Get the image and insert it inside the modal - use its "alt" text as a caption
-        var img = document.getElementById('myImg');
-        var modalImg = document.getElementById("img01");
-        var captionText = document.getElementById("caption");
-        function doThis(item){
-            var theicons = item;
-            if (!e) var e = window.event;
-            e.cancelBubble = true;
-            if (e.stopPropagation) e.stopPropagation();
-            modal.style.display = "block";
-            modalImg.src = '{{ url_for('static', filename='meet.jpg') }}';
-            modalImg.alt = this.alt;
-            captionText.innerHTML = 'hello';
-            //CHANGE THE INFO IN THE POP-UP BASED ON THE CLICK
-            {% if events != -1 %}
-            {% for item in events %}
-                if ('{{ item[0] }}' == theicons){
-                    var imagechange = "/static/"+'{{ item[1] }}';
-                    document.getElementById('checking2').innerHTML = imagechange;
-                    captionText.innerHTML = '<h1>' + '{{ item[3] }}' + "</h1>" + '<p>'+'{{ item[2] }}'+'</p>';
-                    modalImg.src = imagechange;
-                }
-            {% endfor %}
-            {% endif %}
 
+        function showChange () {
+            modal.style.display = "block";
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function () {
+                modal.style.display = "none";
+            };
         }
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
-            modal.style.display = "none";
-        };
+
+               // Get the modal
+        var modal2 = document.getElementById('myModal2');
+        // Get the image and insert it inside the modal - use its "alt" text as a caption
+
+        function showNew() {
+            modal2.style.display = "block";
+            // Get the <span> element that closes the modal
+            var span2 = document.getElementsByClassName("close")[1];
+            // When the user clicks on <span> (x), close the modal
+            span2.onclick = function () {
+                modal2.style.display = "none";
+            };
+        }
+
+
     </script>
 </body>
 </html>

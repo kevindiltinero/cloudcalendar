@@ -1,5 +1,4 @@
 import sqlite3
-import pandas as pd
 
 def calendartable():
     #Set up the connection to the database and the cursor
@@ -51,8 +50,8 @@ def delete_relevent():
 # calendartable()
 # event_writting(9, 'paulsimon', '2016-11-29T12:30:00', '2016-11-3T12:40:00')
 
-conn = sqlite3.connect('calendar.db')
-c = conn.cursor()
-c.execute('ALTER TABLE calendarevents ADD COLUMN category string;')
+# conn = sqlite3.connect('calendar.db')
+# c = conn.cursor()
+# c.execute('ALTER TABLE calendarevents ADD COLUMN category string;')
 
 

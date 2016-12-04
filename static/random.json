@@ -1,3 +1,53 @@
 {
-    "glossary": []
+    "glossary": [
+        {
+            "end": "2016-12-05",
+            "color": "green",
+            "title": "Project",
+            "id": 1480854796014,
+            "start": "2016-12-05"
+        },
+        {
+            "end": "2016-12-07",
+            "color": "red",
+            "title": "Exam",
+            "id": 1480854809794,
+            "start": "2016-12-09"
+        },
+        {
+            "end": "2016-12-14",
+            "color": "green",
+            "title": "Another name",
+            "id": 1480854823964,
+            "start": "2016-12-14"
+        },
+        {
+            "end": "2016-12-16",
+            "color": "brown",
+            "title": "MCQ",
+            "id": 1480854836765,
+            "start": "2016-12-16"
+        },
+        {
+            "end": "2016-12-02",
+            "color": "yellow",
+            "title": "MCQ",
+            "id": 1480854885973,
+            "start": "2016-12-02"
+        },
+        {
+            "end": "2016-12-03",
+            "color": "yellow",
+            "title": "MCQ",
+            "id": 1480854885983,
+            "start": "2016-12-03"
+        },
+        {
+            "end": "2016-12-19",
+            "color": "orange",
+            "title": "Presentation",
+            "id": 1480855103037,
+            "start": "2016-12-19"
+        }
+    ]
 }
