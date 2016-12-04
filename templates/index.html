@@ -468,11 +468,12 @@
 
 ////////////////////////////////     FORM FUNCTIONS RECEIVE EVENT DATA SEND TOTAL AJAX      ////////////////////////////
         function sendForm(calevent) {
-            console.log(calevent.start.format())
-            showChange(0);
             $('#oldevent').html(String(calevent.title));
             $('#oldcategory').html(mapper[String(calevent.color)]);
-            $('#oldtime').html(calevent.start.format());
+            $('#oldtime').html('testing it is showing');
+            console.log('testing it is showing');
+//calevent.start.format()
+            showChange(0);
 
 
             $('#deletebutton').click(function(){
@@ -609,17 +610,21 @@
         $('#querybutton').click(function () {
             var queryeventid;
             var queryeventcolor;
+            var queryeventstart
             var queryevent = $('#query').val();
             var events = myjson.glossary;
             events.forEach(function(event){
                 if (event.title == queryevent){
                     queryeventid = event.id;
                     queryeventcolor = event.color;
+                    queryeventstart = event.start;
                 }
             });
             if (queryeventid){
                 $('#oldevent').html(queryevent);
                 $('#oldcategory').html(mapper[String(queryeventcolor)]);
+                $('#oldtime').html(String(queryeventstart));
+
             }
             showChange(1)
         });
@@ -684,6 +689,19 @@
                 $('#oldevent').show()
                 $('#oldcategory').show()
                 $('#oldtime').show()
+                modal.style.display = "block";
+                // Get the <span> element that closes the modal
+                var span = document.getElementsByClassName("close")[0];
+                // When the user clicks on <span> (x), close the modal
+                span.onclick = function () {
+                    $('#formbutton').show()
+                    $('#deletebutton').show()
+                    $('#newformselecter').show()
+                    $('#newtitle').show()
+                    $('#timeselector2').show()
+                    $('#hider').show()
+                    modal.style.display = "none";
+                };
             } else if (flag == 0){
                 $('#formbutton').show()
                 $('#deletebutton').show()
@@ -697,15 +715,20 @@
                 $('#oldevent').hide()
                 $('#oldcategory').hide()
                 $('#oldtime').hide()
-            }
-
-            modal.style.display = "block";
+                modal.style.display = "block";
             // Get the <span> element that closes the modal
             var span = document.getElementsByClassName("close")[0];
             // When the user clicks on <span> (x), close the modal
             span.onclick = function () {
+                $('#shower1').show()
+                $('#shower2').show()
+                $('#shower3').show()
+                $('#oldevent').show()
+                $('#oldcategory').show()
+                $('#oldtime').show()
                 modal.style.display = "none";
             };
+            }
         }
 
                // Get the modal
