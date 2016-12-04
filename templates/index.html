@@ -382,14 +382,7 @@
             ///////////////////////////////         GET THE JSON         ////////////////////////////////////////
 
             $.getJSON('{{ url_for('static', filename='random.json') }}', function(json){
-                myjson = json;
-
-
-///////////////////////////////////////////          CALENDAR              /////////////////////////////////////////////
-        $(document).ready(function() {
-            $.getJSON('{{ url_for('static', filename='random.json') }}', function(json){
             myjson = json;
-    });
 
 
             console.log(myjson);
@@ -434,7 +427,6 @@
 //                    console.log(delta)
                 }
             })
-        });
 
         var myjson;
         var gety;
