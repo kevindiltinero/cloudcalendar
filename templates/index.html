@@ -301,7 +301,7 @@
     <nav>
         <div>
           <ul id="left-nav">
-            <li><img style="position:relative;top:17px;float:left;"src="{{ url_for('static', filename='brand.png') }}" alt="Harmony"/><a href="welcome">Team Harmony</a></li>
+            <li><img style="position:relative;top:17px;float:left;"src="{{ url_for('static', filename='brand.png') }}" alt="Harmony"/><a href="welcome">Cloud Calendar</a></li>
             <li><a href="/">Home</a></li>
           </ul>
           <ul id="right-nav">
@@ -346,8 +346,8 @@
                   <option value="DataScience">DataScience</option>
                   <option value="DataVisualisation">DataVisualisation</option>
                 </select>
-                <button id="formbutton" type="button">Update this event!</button>
-                <button id="deletebutton" type="button">Delete this event!</button>
+                <button id="formbutton" type="button">UPDATE EVENT</button>
+                <button id="deletebutton" type="button">DELETE EVENT</button>
             </form>
         </div>
     </div>
@@ -367,7 +367,7 @@
                   <option value="DataScience">DataScience</option>
                   <option value="DataVisualisation">DataVisualisation</option>
                 </select>
-                <button id="formbutton2" type="button">Click Me!</button>
+                <button id="formbutton2" type="button">CREATE EVENT</button>
             </form>
         </div>
     </div>
@@ -377,10 +377,21 @@
     <script>
 
 
-    var mapper = {green:'Java', red:'Algorithms', blue:'Programming', orange:'DataVisualisation', yellow:'CloudComputing', brown:'DataScience'};
+    var mapper = {green:'Java', red:'Algorithms', blue:'Programming', orange:'DataVisualisation', purple:'CloudComputing', brown:'DataScience'};
+
+            ///////////////////////////////         GET THE JSON         ////////////////////////////////////////
+
+            $.getJSON('{{ url_for('static', filename='random.json') }}', function(json){
+                myjson = json;
+
 
 ///////////////////////////////////////////          CALENDAR              /////////////////////////////////////////////
         $(document).ready(function() {
+            $.getJSON('{{ url_for('static', filename='random.json') }}', function(json){
+            myjson = json;
+    });
+
+
             console.log(myjson);
 
             ////////  CHECK THAT I HAVE THE JSON DATA
@@ -452,7 +463,7 @@
                 });
                 setTimeout( function(){
                     location.reload();
-                }, 1300 );
+                }, 500 );
             });
 
 
@@ -486,7 +497,7 @@
 
                 setTimeout( function(){
                     location.reload();
-                }, 1300 );
+                }, 500 );
             });
         }
 
@@ -527,7 +538,7 @@
 
                 setTimeout( function(){
                         location.reload();
-                    }, 1300 );
+                    }, 500 );
 
                  });
         }
@@ -556,7 +567,7 @@
                 });
             setTimeout( function(){
                     location.reload();
-                }, 1300 );
+                }, 500 );
         }
 
 
@@ -613,11 +624,7 @@
             return false;
         }
 
-        ///////////////////////////////         GET THE JSON         ////////////////////////////////////////
-        $.getJSON('{{ url_for('static', filename='random.json') }}', function(json){
-            myjson = json;
 
-        });
 
 
 
@@ -650,6 +657,9 @@
                 modal2.style.display = "none";
             };
         }
+
+
+    });
 
 
     </script>

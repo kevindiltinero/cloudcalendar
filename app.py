@@ -30,7 +30,7 @@ def database_to_json():
         'Algorithms': 'red',
         'Java': 'green',
         'Programming': 'blue',
-        'CloudComputing': 'yellow',
+        'CloudComputing': 'purple',
         'DataScience': 'brown',
         'DataVisualisation': 'orange'}
     for row in results:
